@@ -111,8 +111,8 @@ const Layout = ({ children }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <AppBar position="static">
-        <Container maxWidth="xl">
+      <AppBar position="static" sx={{ width: '100%' }}>
+        <Container maxWidth="xl" sx={{ padding: { xs: 0 }, width: '100%' }}>
           <Toolbar disableGutters>
             {/* Mobile view */}
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -252,7 +252,7 @@ const Layout = ({ children }) => {
       </Drawer>
 
       {/* Main content */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: { xs: 2, sm: 3 } }}>
         <Container maxWidth="lg">
           {children}
         </Container>

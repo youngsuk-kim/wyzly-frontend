@@ -64,7 +64,7 @@ const Login = () => {
         <Paper 
           elevation={3} 
           sx={{ 
-            p: 4, 
+            p: { xs: 3, sm: 4 }, 
             width: '100%',
             borderRadius: 2,
             display: 'flex',

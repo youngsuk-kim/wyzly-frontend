@@ -136,7 +136,7 @@ const BoxDetail = () => {
           {error}
         </Alert>
       ) : box ? (
-        <Grid container spacing={4}>
+        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
           {/* Box Image */}
           <Grid item xs={12} md={6}>
             <Card>
@@ -145,7 +145,7 @@ const BoxDetail = () => {
                 image={box.image}
                 alt={box.title}
                 sx={{ 
-                  height: { xs: '300px', md: '400px' },
+                  height: { xs: '250px', sm: '300px', md: '400px' },
                   objectFit: 'cover'
                 }}
               />
@@ -154,72 +154,117 @@ const BoxDetail = () => {
 
           {/* Box Details */}
           <Grid item xs={12} md={6}>
-            <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
-              <Box sx={{ mb: 2 }}>
+            <Paper elevation={2} sx={{ p: { xs: 2, sm: 3 }, height: '100%' }}>
+              <Box sx={{ mb: 1.5 }}>
                 {renderStockStatus(box.quantity)}
               </Box>
 
-              <Typography variant="h4" component="h1" gutterBottom>
+              <Typography 
+                variant="h4" 
+                component="h1" 
+                gutterBottom
+                sx={{ 
+                  fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' },
+                  lineHeight: { xs: 1.2, sm: 1.3 }
+                }}
+              >
                 {box.title}
               </Typography>
 
-              <Typography variant="h5" color="primary" gutterBottom>
+              <Typography 
+                variant="h5" 
+                color="primary" 
+                gutterBottom
+                sx={{ fontSize: { xs: '1.3rem', sm: '1.5rem' } }}
+              >
                 ${box.price.toFixed(2)}
               </Typography>
 
-              <Divider sx={{ my: 2 }} />
+              <Divider sx={{ my: { xs: 1.5, sm: 2 } }} />
 
-              <Typography variant="body1" paragraph>
+              <Typography 
+                variant="body1" 
+                paragraph
+                sx={{ fontSize: { xs: '0.9rem', sm: '1rem' } }}
+              >
                 This delicious box contains a variety of items from our restaurant.
                 Perfect for a quick meal or special occasion.
               </Typography>
 
-              <Box sx={{ my: 3 }}>
-                <Typography variant="subtitle1" gutterBottom>
+              <Box sx={{ my: { xs: 2, sm: 3 } }}>
+                <Typography 
+                  variant="subtitle1" 
+                  gutterBottom
+                  sx={{ fontSize: { xs: '0.9rem', sm: '1rem' } }}
+                >
                   <strong>Availability:</strong> {box.quantity > 0 ? `${box.quantity} in stock` : 'Out of stock'}
                 </Typography>
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography 
+                  variant="subtitle1" 
+                  gutterBottom
+                  sx={{ fontSize: { xs: '0.9rem', sm: '1rem' } }}
+                >
                   <strong>Restaurant ID:</strong> {box.restaurantId}
                 </Typography>
               </Box>
 
-              <Divider sx={{ my: 2 }} />
+              <Divider sx={{ my: { xs: 1.5, sm: 2 } }} />
 
               {/* Quantity Selector */}
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                <Typography variant="subtitle1" sx={{ mr: 2 }}>
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                mb: { xs: 2, sm: 3 },
+                flexWrap: { xs: 'wrap', sm: 'nowrap' },
+                gap: { xs: 1, sm: 0 }
+              }}>
+                <Typography 
+                  variant="subtitle1" 
+                  sx={{ 
+                    mr: { xs: 1, sm: 2 },
+                    fontSize: { xs: '0.9rem', sm: '1rem' }
+                  }}
+                >
                   Quantity:
                 </Typography>
-                <IconButton 
-                  onClick={() => handleQuantityChange(quantity - 1)}
-                  disabled={quantity <= 1 || box.quantity === 0}
-                  size="small"
-                >
-                  <RemoveIcon />
-                </IconButton>
-                <TextField
-                  value={quantity}
-                  onChange={(e) => {
-                    const value = parseInt(e.target.value);
-                    if (!isNaN(value)) {
-                      handleQuantityChange(value);
-                    }
-                  }}
-                  inputProps={{ 
-                    min: 1, 
-                    max: box.quantity,
-                    style: { textAlign: 'center' }
-                  }}
-                  disabled={box.quantity === 0}
-                  sx={{ width: '60px', mx: 1 }}
-                />
-                <IconButton 
-                  onClick={() => handleQuantityChange(quantity + 1)}
-                  disabled={quantity >= box.quantity || box.quantity === 0}
-                  size="small"
-                >
-                  <AddIcon />
-                </IconButton>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                  <IconButton 
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    disabled={quantity <= 1 || box.quantity === 0}
+                    size="small"
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </IconButton>
+                  <TextField
+                    value={quantity}
+                    onChange={(e) => {
+                      const value = parseInt(e.target.value);
+                      if (!isNaN(value)) {
+                        handleQuantityChange(value);
+                      }
+                    }}
+                    inputProps={{ 
+                      min: 1, 
+                      max: box.quantity,
+                      style: { textAlign: 'center' }
+                    }}
+                    disabled={box.quantity === 0}
+                    sx={{ 
+                      width: { xs: '50px', sm: '60px' }, 
+                      mx: 1,
+                      '& .MuiInputBase-input': {
+                        p: { xs: '6px 4px', sm: '8.5px 14px' }
+                      }
+                    }}
+                  />
+                  <IconButton 
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    disabled={quantity >= box.quantity || box.quantity === 0}
+                    size="small"
+                  >
+                    <AddIcon fontSize="small" />
+                  </IconButton>
+                </Box>
               </Box>
 
               {/* Order Button */}
@@ -229,7 +274,10 @@ const BoxDetail = () => {
                 fullWidth
                 disabled={box.quantity === 0 || orderLoading}
                 onClick={handleCreateOrder}
-                sx={{ py: 1.5 }}
+                sx={{ 
+                  py: { xs: 1, sm: 1.5 },
+                  fontSize: { xs: '0.9rem', sm: '1rem' }
+                }}
               >
                 {orderLoading ? <CircularProgress size={24} /> : 'Place Order'}
               </Button>

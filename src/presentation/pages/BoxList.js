@@ -86,7 +86,7 @@ const BoxList = () => {
         <Typography variant="body1" color="text.secondary" paragraph>
           Browse our selection of boxes and place your order.
         </Typography>
-        
+
         {/* Search box */}
         <TextField
           fullWidth
@@ -118,7 +118,7 @@ const BoxList = () => {
           No boxes found. Please try a different search term.
         </Alert>
       ) : (
-        <Grid container spacing={3}>
+        <Grid container spacing={{ xs: 2, sm: 3 }}>
           {filteredBoxes.map((box) => (
             <Grid item xs={12} sm={6} md={4} key={box.id}>
               <Card 
@@ -137,22 +137,53 @@ const BoxList = () => {
               >
                 <CardMedia
                   component="img"
-                  height="200"
+                  height={{ xs: "160", sm: "200" }}
                   image={box.image}
                   alt={box.title}
                 />
-                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                <CardContent sx={{ 
+                  flexGrow: 1, 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  p: { xs: 1.5, sm: 2 }
+                }}>
                   <Box sx={{ mb: 1 }}>
                     {renderStockStatus(box.quantity)}
                   </Box>
-                  <Typography gutterBottom variant="h6" component="div">
+                  <Typography 
+                    gutterBottom 
+                    variant="h6" 
+                    component="div"
+                    sx={{ 
+                      fontSize: { xs: '1rem', sm: '1.25rem' },
+                      lineHeight: { xs: 1.3, sm: 1.5 }
+                    }}
+                  >
                     {box.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                  <Typography 
+                    variant="body2" 
+                    color="text.secondary" 
+                    sx={{ 
+                      mb: 2,
+                      fontSize: { xs: '0.8rem', sm: '0.875rem' }
+                    }}
+                  >
                     {box.quantity > 0 ? `${box.quantity} available` : 'Currently unavailable'}
                   </Typography>
-                  <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="h6" color="primary">
+                  <Box sx={{ 
+                    mt: 'auto', 
+                    display: 'flex', 
+                    justifyContent: 'space-between', 
+                    alignItems: 'center',
+                    flexWrap: { xs: 'wrap', sm: 'nowrap' },
+                    gap: { xs: 1, sm: 0 }
+                  }}>
+                    <Typography 
+                      variant="h6" 
+                      color="primary"
+                      sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+                    >
                       ${box.price.toFixed(2)}
                     </Typography>
                     <Button 
@@ -162,6 +193,11 @@ const BoxList = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         handleBoxClick(box.id);
+                      }}
+                      sx={{ 
+                        fontSize: { xs: '0.75rem', sm: '0.8125rem' },
+                        py: { xs: 0.5 },
+                        px: { xs: 1.5 }
                       }}
                     >
                       View Details
