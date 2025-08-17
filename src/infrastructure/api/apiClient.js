@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// Create an Axios instance
+// Create an Axios instance with default config
 const apiClient = axios.create({
-  baseURL: window.location.protocol + 'https://70efbdd93acd.ngrok-free.app/api', // Use same protocol as frontend
+  baseURL: 'https://70efbdd93acd.ngrok-free.app/api', // Adjust this to match your backend URL
   headers: {
     'Content-Type': 'application/json',
   },
