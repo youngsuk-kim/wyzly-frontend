@@ -217,6 +217,7 @@ const theme = createTheme({
         root: {
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
           background: 'linear-gradient(90deg, #2e7d32 0%, #1b5e20 100%)',
+          borderRadius: 0,
         },
       },
     },
