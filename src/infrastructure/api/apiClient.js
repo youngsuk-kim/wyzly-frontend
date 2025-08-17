@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance with default config
 const apiClient = axios.create({
-  baseURL: 'http://3.39.238.189:8080/api', // Adjust this to match your backend URL
+  baseURL: window.location.protocol + '//3.39.238.189:8080/api', // Use same protocol as frontend
   headers: {
     'Content-Type': 'application/json',
   },
