@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance with default config
 const apiClient = axios.create({
-  baseURL: 'https://katydid-included-sincerely.ngrok-free.app/api', // Adjust this to match your backend URL
+  baseURL: 'ttp://ec2-3-39-238-189.ap-northeast-2.compute.amazonaws.com:8080/api', // Adjust this to match your backend URL
   headers: {
     'Content-Type': 'application/json',
   },
