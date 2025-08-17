@@ -79,7 +79,7 @@ const BoxList = () => {
 
   return (
     <Layout>
-      <Box sx={{ mb: 4 }}>
+      <Box sx={{ mb: 2 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           Available Boxes
         </Typography>
@@ -94,7 +94,7 @@ const BoxList = () => {
           placeholder="Search boxes..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          sx={{ mb: 3, mt: 2 }}
+          sx={{ mb: 1.5, mt: 1 }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -118,9 +118,9 @@ const BoxList = () => {
           No boxes found. Please try a different search term.
         </Alert>
       ) : (
-        <Grid container spacing={{ xs: 2, sm: 3 }}>
+        <Grid container spacing={2}>
           {filteredBoxes.map((box) => (
-            <Grid item xs={12} sm={6} md={4} key={box.id}>
+            <Grid item xs={6} sm={4} md={3} lg={2} key={box.id}>
               <Card 
                 sx={{ 
                   height: '100%', 
@@ -137,15 +137,16 @@ const BoxList = () => {
               >
                 <CardMedia
                   component="img"
-                  height={{ xs: "160", sm: "200" }}
+                  height={{ xs: "120", sm: "140", md: "160" }}
                   image={box.image}
                   alt={box.title}
+                  sx={{ objectFit: "cover" }}
                 />
                 <CardContent sx={{ 
                   flexGrow: 1, 
                   display: 'flex', 
                   flexDirection: 'column',
-                  p: { xs: 1.5, sm: 2 }
+                  p: { xs: 1, sm: 1.5 }
                 }}>
                   <Box sx={{ mb: 1 }}>
                     {renderStockStatus(box.quantity)}
@@ -155,8 +156,9 @@ const BoxList = () => {
                     variant="h6" 
                     component="div"
                     sx={{ 
-                      fontSize: { xs: '1rem', sm: '1.25rem' },
-                      lineHeight: { xs: 1.3, sm: 1.5 }
+                      fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' },
+                      lineHeight: { xs: 1.2, sm: 1.3 },
+                      mb: 0.5
                     }}
                   >
                     {box.title}
@@ -165,8 +167,8 @@ const BoxList = () => {
                     variant="body2" 
                     color="text.secondary" 
                     sx={{ 
-                      mb: 2,
-                      fontSize: { xs: '0.8rem', sm: '0.875rem' }
+                      mb: 1,
+                      fontSize: { xs: '0.75rem', sm: '0.8rem' }
                     }}
                   >
                     {box.quantity > 0 ? `${box.quantity} available` : 'Currently unavailable'}
@@ -176,13 +178,16 @@ const BoxList = () => {
                     display: 'flex', 
                     justifyContent: 'space-between', 
                     alignItems: 'center',
-                    flexWrap: { xs: 'wrap', sm: 'nowrap' },
-                    gap: { xs: 1, sm: 0 }
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    gap: { xs: 0.5, sm: 0.5 }
                   }}>
                     <Typography 
                       variant="h6" 
                       color="primary"
-                      sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem' } }}
+                      sx={{ 
+                        fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
+                        alignSelf: { xs: 'flex-start', sm: 'center' }
+                      }}
                     >
                       ${box.price.toFixed(2)}
                     </Typography>
@@ -195,9 +200,10 @@ const BoxList = () => {
                         handleBoxClick(box.id);
                       }}
                       sx={{ 
-                        fontSize: { xs: '0.75rem', sm: '0.8125rem' },
-                        py: { xs: 0.5 },
-                        px: { xs: 1.5 }
+                        fontSize: { xs: '0.7rem', sm: '0.75rem' },
+                        py: { xs: 0.25, sm: 0.5 },
+                        px: { xs: 1, sm: 1.5 },
+                        minWidth: { xs: '100%', sm: 'auto' }
                       }}
                     >
                       View Details
