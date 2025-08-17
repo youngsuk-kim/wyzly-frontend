@@ -236,6 +236,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          borderRadius: 0,
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {
