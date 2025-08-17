@@ -118,12 +118,12 @@ const BoxList = () => {
           No boxes found. Please try a different search term.
         </Alert>
       ) : (
-        <Grid container spacing={2}>
+        <Grid container spacing={3} sx={{ mx: 'auto' }}>
           {filteredBoxes.map((box) => (
-            <Grid item xs={6} sm={4} md={3} lg={2} key={box.id}>
+            <Grid item xs={12} sm={4} md={4} lg={4} xl={4} key={box.id}>
               <Card 
                 sx={{ 
-                  height: '100%', 
+                  height: 320, 
                   display: 'flex', 
                   flexDirection: 'column',
                   transition: 'transform 0.2s, box-shadow 0.2s',
@@ -137,7 +137,7 @@ const BoxList = () => {
               >
                 <CardMedia
                   component="img"
-                  height={{ xs: "120", sm: "140", md: "160" }}
+                  height={160}
                   image={box.image}
                   alt={box.title}
                   sx={{ objectFit: "cover" }}
@@ -146,7 +146,8 @@ const BoxList = () => {
                   flexGrow: 1, 
                   display: 'flex', 
                   flexDirection: 'column',
-                  p: { xs: 1, sm: 1.5 }
+                  p: 2,
+                  height: 160
                 }}>
                   <Box sx={{ mb: 1 }}>
                     {renderStockStatus(box.quantity)}
@@ -156,9 +157,15 @@ const BoxList = () => {
                     variant="h6" 
                     component="div"
                     sx={{ 
-                      fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' },
-                      lineHeight: { xs: 1.2, sm: 1.3 },
-                      mb: 0.5
+                      fontSize: '1rem',
+                      lineHeight: 1.3,
+                      mb: 0.5,
+                      height: 40,
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical'
                     }}
                   >
                     {box.title}
@@ -168,7 +175,7 @@ const BoxList = () => {
                     color="text.secondary" 
                     sx={{ 
                       mb: 1,
-                      fontSize: { xs: '0.75rem', sm: '0.8rem' }
+                      fontSize: '0.8rem'
                     }}
                   >
                     {box.quantity > 0 ? `${box.quantity} available` : 'Currently unavailable'}
@@ -178,15 +185,15 @@ const BoxList = () => {
                     display: 'flex', 
                     justifyContent: 'space-between', 
                     alignItems: 'center',
-                    flexDirection: { xs: 'column', sm: 'row' },
-                    gap: { xs: 0.5, sm: 0.5 }
+                    flexDirection: 'row',
+                    gap: 1
                   }}>
                     <Typography 
                       variant="h6" 
                       color="primary"
                       sx={{ 
-                        fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
-                        alignSelf: { xs: 'flex-start', sm: 'center' }
+                        fontSize: '1rem',
+                        fontWeight: 600
                       }}
                     >
                       ${box.price.toFixed(2)}
@@ -200,10 +207,10 @@ const BoxList = () => {
                         handleBoxClick(box.id);
                       }}
                       sx={{ 
-                        fontSize: { xs: '0.7rem', sm: '0.75rem' },
-                        py: { xs: 0.25, sm: 0.5 },
-                        px: { xs: 1, sm: 1.5 },
-                        minWidth: { xs: '100%', sm: 'auto' }
+                        fontSize: '0.75rem',
+                        py: 0.5,
+                        px: 1.5,
+                        minWidth: '100px'
                       }}
                     >
                       View Details
