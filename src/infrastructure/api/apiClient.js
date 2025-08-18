@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance with default config
 const apiClient = axios.create({
-  baseURL: 'https://ec2-3-39-238-189.ap-northeast-2.compute.amazonaws.com/api', // Adjust this to match your backend URL
+  baseURL: 'https://ec2-54-180-246-80.ap-northeast-2.compute.amazonaws.com/api', // Adjust this to match your backend URL
   headers: {
     'Content-Type': 'application/json',
   },
